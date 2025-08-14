@@ -1,0 +1,420 @@
+@import url('https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Dancing+Script:wght@400..700&family=Playpen+Sans+Arabic:wght@100..800&family=Tajawal:wght@200;300;400;500;700;800;900&family=Cinzel:wght@400..900&family=Lalezar&family=Reem+Kufi+Fun:wght@400..700&family=Gupter:wght@400;500;700&family=Marhey:wght@300..700&display=swap');
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Body style start */
+  body {
+    font-family: 'Tajawal';
+    text-align: justify;
+    background-color: #F8F9FA ;
+    direction: rtl;
+  }
+
+  .btn-primary{
+    background-color: hsl(200, 17%, 98%);
+    border: gray solid 1px;
+    border-radius: 5px;
+    color: black;
+    transition: all 0.3s ease;
+  }
+  .btn-primary:hover{
+    border: gray solid 1px;
+    color:black;
+    background-color: hsl(200, 17%, 88%);
+    border-bottom: gray solid 5px;
+    transform: scale(1.009);
+  }
+  .btn-primary:active{
+    background-color: hsl(200, 17%, 90%)    !important; 
+    color: black !important;
+    transform: scale(1.01) !important;
+    border: black solid 1px !important;
+  }
+
+  h3{
+    text-align: center;
+    font-weight: bold;
+    margin: 5px;
+    margin-bottom: 20px;
+    padding: 2px;
+  }
+  h6{
+    text-align: center;
+    margin: 5px;
+    padding: 2px;
+    letter-spacing: 5px;
+    line-height:1.75;
+  }
+
+  .card{
+    transition: border-bottom 0.2s ease, transform 0.08s ;
+    
+  }
+  .card:hover{ 
+    border-bottom: gray solid 5px; 
+    transform: scale(1.01);
+  }
+  .card-title{
+    width: fit-content;
+    text-align: center;
+    letter-spacing: 2px;
+    margin: auto;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+
+  .hidden{
+    display: none !important;
+  }
+  @keyframes fadeIn{
+    from {
+       opacity: 0;
+       transform: translateY(-10px) ;
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0px) ;
+    }
+  }
+
+/* Body style end */
+
+
+
+/* Footer style start */
+  footer a {
+    text-decoration: none;
+    color: inherit;
+  }
+  footer a:hover {
+    text-decoration: underline;
+  }
+/* Footer style end */
+
+
+/* Navbar style start */
+  .brand-en {
+    font-weight: bold;
+    /* خصائص أخرى */
+  }
+
+  .brand-ar {
+    font-weight: bold;
+    font-size: 1.0em;
+    font-family: 'Tajawal';
+  }
+
+  .nav-item {
+    font-family: 'Tajawal';
+    font-size: 1.0em;
+  }
+
+  .btn-outline-success{
+    background-color: #F8F9FA !important;
+    color: #3587A4 !important;
+    border-color: #3587A4 !important;
+    transition: background-color 0.3s ease, color 0.3s ease !important;
+  }
+
+  .btn-outline-success:hover{
+    background-color: #3587A4 !important;
+    color: #F8F9FA !important;
+  }
+
+.heart-icon{
+  color: #e63946; /* أحمر جذاب */
+  transition: all 0.2s  ease-in-out;
+}
+.heart-icon:hover{
+  color: #ff4d4d; /* أحمر جذاب */
+  transform: scale(1.1);
+}
+.save-icon {
+  color: #2a9d8f; /* أخضر مائل للأزرق */
+  transition: all 0.2s ease-in-out;
+}
+.save-icon:hover {
+  color: #38c172; /* أخضر مائل للأزرق */
+  transform: scale(1.1);
+}
+
+
+/* Navbar style end */
+
+
+
+/* Service style start */
+  .service-card{ 
+    height: 450px;
+  }
+
+  .service-card-icon{
+    width: 15%;
+    height: auto;
+  }
+/* Service style ends */
+
+/* Questions style starts */
+.questions-box{
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 1rem;
+  padding-bottom: 0.8rem;
+}
+.questions-button{
+  height: min-content;
+  padding: 10px;
+  font-size: 1.15rem;
+}
+.anwser-box {
+  animation: fadeIn 0.5s ease-out;
+}
+.plusIcon{
+  float: left;
+  color: rgb(100, 180, 100);
+}
+.minusIcon{
+  float: left;
+  color: rgb(100, 180, 100);
+}
+/* Questions style ends */
+
+
+/* Projects style starts */
+.projects-card {
+  transition: .5s;
+}
+.project-action {
+position: absolute;
+width: 100%;
+height: 100%;
+top: 0;
+left: 0;
+display: flex;
+align-items: center;
+justify-content:  center;
+transition: .5s;
+padding: 0 10px;
+}
+.project-action .btn {
+position: relative;
+margin: 0 3px;
+margin-top: 100px;
+opacity: 0;
+}
+.projects-card:hover .project-action {
+background: rgba(255, 255, 255, 0.7);
+}
+
+.projects-card:hover .project-action .btn{
+  opacity: 1;
+  margin-top: 0;
+}
+
+.projects-card:hover .project-action .btn:first-child {
+transition: .3s 0s;
+}
+.projects-card .project-action .btn:first-child i .first-icon {
+  transition:  color 0.2s , transform 0.2s
+}
+.projects-card .project-action .btn:first-child i .first-icon:hover {
+  transform: scale(1.1);
+  color: #ff4d4d !important;
+}
+
+.projects-card:hover .project-action .btn:nth-child(2) {
+transition: .3s .05s;
+}
+.projects-card:hover .project-action .btn:nth-child(2) i .second-icon {
+transition:  color 0.2s , transform 0.2s;
+}
+.projects-card:hover .project-action .btn:nth-child(2) i .second-icon:hover {
+  transform: scale(1.1);
+  color: #38c172 !important;
+
+}
+
+
+.projects-card:hover .project-action .btn:nth-child(3) {
+transition: .3s .1s;
+}
+.projects-card:hover .project-action .btn:nth-child(3)  i .third-icon{
+  transition:  color 0.2s , transform 0.2s;
+}
+.projects-card:hover .project-action .btn:nth-child(3)  i .third-icon:hover{
+  transform: scale(1.1);
+  color: #5a6f8c !important;
+}
+
+
+
+.projects-card:hover .project-action .btn:nth-child(4) {
+transition: .3s .15s;
+} 
+.projects-card .project-action .btn:nth-child(4) i .fourth-icon {
+  transition: color 0.2s , transform 0.2s;
+}    
+.projects-card .project-action .btn:nth-child(4) i .fourth-icon:hover {
+transform: scale(1.1);
+color: #1DA1F2 !important;
+
+}     
+
+.projects-card:hover {
+box-shadow: 0 0 30px #DDDDDD;
+}
+
+.projects-card .project-img img {
+transition: .5s;
+}
+.projects-card:hover .project-img img {
+transform: scale(1.001);
+}
+
+.projects-card .btn i {
+  font-size: 1.6rem; 
+  padding: 10px;
+}
+
+
+.category-badge{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 4px 8px;
+  color: #000;
+  border-radius: 6px;
+  font-size:0.8rem;
+  font-weight: bold;
+  z-index: 3;
+
+}
+
+@keyframes share-card-fade{
+  from{
+ opacity: 0; 
+  }
+  to {
+    opacity: 1;
+
+  }
+}
+
+.share-card {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  border-bottom: none;
+  transform: none;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(240,240,240,0.95));
+  transition: 0.2s;
+  animation: share-card-fade 0.2s forwards;
+}
+  .share-card .social-media .btn {
+  position: relative;
+  margin: 0 3px;
+  margin-top: 0; 
+  opacity: 0;
+  }
+
+.ShareIcons{
+    font-size: 1.7rem; 
+    margin: 0.4rem;
+    font-weight: bold; 
+    text-decoration: none; 
+    transition: 0.2s;
+}
+.ShareIcons:hover{
+    transform:  scale( 1.1);
+}
+
+@keyframes icon-animation{
+  from{
+    opacity: 0;
+    margin-top: 100px;
+  }
+  to{
+    opacity: 1;
+    margin-top: 0px;
+  }
+}
+.share-card .btn:first-child{
+  animation: icon-animation 0.3s   forwards;
+  animation-delay: 0s;
+}
+.share-card .btn:nth-child(2){
+  animation: icon-animation 0.3s   forwards;
+  animation-delay: 0.05s;
+}
+
+.share-card .btn:nth-child(3){
+  animation: icon-animation 0.3s   forwards;
+  animation-delay: 0.10s;
+}
+
+.share-card .btn:nth-child(4){
+  animation: icon-animation 0.3s   forwards;
+  animation-delay: 0.10s;
+}
+
+.share-cancel{
+  cursor : pointer;
+  font-size: 1.7rem;
+  transition: 0.2s;
+}
+.share-cancel:hover{
+  transform:  scale( 1.1);
+}
+/* Projects style ends */
+
+
+/* Project style starts */
+
+/* Project style starts */
