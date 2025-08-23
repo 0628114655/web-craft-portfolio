@@ -9,8 +9,8 @@ urlpatterns = [
     path('Projects/', views.Projects.as_view() ,name= 'Projects'),
     path('Projects/<pk>/', views.Projects.as_view() ,name= 'Projects-detail'),
     path('Images/', views.Images.as_view() ,name= 'Images'),
-    path('Favorites/', views.FavoritesView.as_view(), name= 'Favorites'),
-    path('Favorites/<pk>/', views.FavoritesView.as_view(), name= 'favorites-detail'),
+    path('Favourites/', views.FavouritesView.as_view(), name= 'Favourites'),
+    path('Favourites/<pk>/', views.FavouritesView.as_view(), name= 'favourites-detail'),
     path('Saves/', views.SavesView.as_view(), name= 'Saves'),
     path('Saves/<pk>/', views.SavesView.as_view(), name= 'Saves-detail'),
 

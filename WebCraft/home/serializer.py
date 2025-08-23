@@ -29,9 +29,9 @@ class Project_serializer(serializers.ModelSerializer):
         model = Project
         fields = '__all__'
 
-class Favorits_serializer(serializers.ModelSerializer):
+class Favourites_serializer(serializers.ModelSerializer):
    class Meta:
-        model = Favorites
+        model = Favourites
         fields = ['project', 'id']  # لا نطلب visitor_id من المستخدم
 
    def create(self, validated_data):
@@ -40,7 +40,7 @@ class Favorits_serializer(serializers.ModelSerializer):
             raise serializers.ValidationError("No visitor_id in cookies.")
         
         project = validated_data['project']
-        favorite, created = Favorites.objects.get_or_create(
+        favorite, created = Favourites.objects.get_or_create(
             visitor_id=visitor_id,
             project=project
         )

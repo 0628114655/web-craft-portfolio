@@ -7,9 +7,10 @@ function Services({title, serviceIcon, color , content }) {
   return (
     <div className='card service-card'> 
             <IconComponent style={{color:color}} className='service-card-icon mx-auto m-2 '/> 
-            <div className="card-body">
+            <div className="card-body position-relative" >
               <h4 className='card-title service-card-title '>{title }</h4>
               <p className='card-text service-card-content'>{content}</p>
+              <a href="https://wa.me/+2120628114655" className='btn  btn-outline-success service-card-btn  d-flex align-items-center  justify-content-center gap-2 mt-2'  style={{}}> <Icons.FaWhatsapp size={20} />     <span>اطلب الخدمة</span> </a>
             </div>
 
 

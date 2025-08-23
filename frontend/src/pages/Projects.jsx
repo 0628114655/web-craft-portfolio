@@ -6,7 +6,7 @@ import { FaXTwitter } from "react-icons/fa6";  // من حزمة react-icons/fa6
 
 
 
-function Projects({fetchFavoritesCount, favoritesList, fetchSavesCount,  savesList}) {
+function Projects({fetchFavouritesCount, favouritesList, fetchSavesCount,  savesList, projectAllLikes}) {
     const [projects, setProjects] = useState ([])
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true)
@@ -75,18 +75,18 @@ function ProjectCard({ project }) {
           {project.type &&<div className='badge category-badge' style={{backgroundColor : categoryColors[project.type] || "#ccc"}} > {project.type} </div>}
           <img className="card-img-top" src={project.images?.[0]?.image} alt={project.title} />
           <div className='project-action'>
-            <div className='btn'> <i > <icons.FaHeart className='first-icon'  onClick={() => { const favorite = favoritesList.find(fav => fav.project === project.id);
-                        if (favorite && favorite.id) { toggleItem('Favorites',favorite, true, fetchFavoritesCount);} else {toggleItem('Favorites', project, false, fetchFavoritesCount);}}}
-                        style={{color : favoritesList.some(fav => fav.project === project.id)?'#e63946': 'black' }}
-                        title={favoritesList.some(fav => fav.project === project.id) ? `إزالة المشروع من المفضلات` : `إضافة المشروع إلى المفضلات`} />
-            </i> </div>
-            <div className='btn' > <i className='icon'> <icons.FaSave className='second-icon' onClick={()=>{const savedItem = savesList.find(item => item.project === project.id);
+            <div className='btn'>  <icons.FaHeart className='icon first-icon'  onClick={() => { const favourite = favouritesList.find(fav => fav.project === project.id);
+                        if (favourite && favourite.id) { toggleItem('Favourites', favourite, true, fetchFavouritesCount);} else {toggleItem('Favourites', project, false, fetchFavouritesCount);}}}
+                        style={{color : favouritesList.some(fav => fav.project === project.id)?'#e63946': 'black' }}
+                        title={favouritesList.some(fav => fav.project === project.id) ? `إزالة المشروع من المفضلات` : `إضافة المشروع إلى المفضلات`} />
+             </div>
+            <div className='btn' >  <icons.FaSave className='icon second-icon' onClick={()=>{const savedItem = savesList.find(item => item.project === project.id);
                         if (savedItem  && savedItem.id) { toggleItem('Saves',savedItem, true, fetchSavesCount)} else { toggleItem('Saves',project, false, fetchSavesCount)} }}
                         style={{color : savesList.some(item => (item.project === project.id))?'#2a9d8f': 'black'}}
                         title={savesList.some(fav => fav.project === project.id) ? `إزالة الحفظ` : `حفظ المشروع`} />
-            </i> </div>
-            <Link to={`/project/${project.id}/`} className='btn' title='معاينة المشروع'> <i className='icon'> <icons.FaEye className='third-icon'/> </i> </Link>
-            <div className='btn' title='مشاركة المشروع'> <i className='icon'> <icons.FaShare className='fourth-icon' onClick={()=> shareProject(project)}/> </i> </div>
+            </div>
+            <Link to={`/project/${project.id}/`} className='btn' title='معاينة المشروع'>  <icons.FaEye className='icon third-icon'/>  </Link>
+            <div className='btn' title='مشاركة المشروع'>  <icons.FaShare className='icon fourth-icon' onClick={()=> shareProject(project)}/> </div>
           </div>
           {showAltShare && currentProjectId===project.id &&  (
               <div className="share-card">
@@ -109,11 +109,14 @@ function ProjectCard({ project }) {
       )}
           
           
-        </div>
-        
+        </div> 
         <div className="card-body">
           <h6 className="card-title">{project.title}</h6>
           <p className="card-text">{project.gimpse}</p>
+        </div>
+        <div className='project-statistics-container' style={{position : 'absolute', bottom: '10px', left : '10px'}}>
+          <span className='project-likes m-2 text-secondary'> < icons.FaHeart className='project-likes-icon' /> {projectAllLikes[project.id]? projectAllLikes[project.id] : 0} </span>
+          <span className='project-views m-2 text-secondary'> < icons.FaEye  className='project-views-icon'/> {} </span>
         </div>
       </div>
       
@@ -142,8 +145,12 @@ function ProjectCard({ project }) {
     )
   return (
     <div  className='container'>
-        {error && <p className='text-danger'> حدث خطأ أثناء تحميل المشاريع: {error}</p>}
-        { loading ? (<p className='text-center'> يتم الآن تحميل المشاريع ... </p>) :
+        {error ? <p className='text-danger'> حدث خطأ أثناء تحميل المشاريع: {error}</p>         :
+         loading ? (<div className="d-flex justify-content-center align-items-center" style={{ height: '300px' }}>
+                        <div className="spinner-border text-primary" role="status">
+                            <span className="visually-hidden">جارٍ التحميل...</span>
+                        </div>
+                    </div>) :
         (
           <>
         <h3>أعمالنا</h3>

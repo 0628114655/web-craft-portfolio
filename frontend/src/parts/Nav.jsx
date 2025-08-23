@@ -7,14 +7,14 @@ import { Link, useLocation } from 'react-router-dom'
 function Nav({favoritesCount, savesCount}) {
   const location = useLocation()
   const isActive = (path) => location.pathname === path
+  const isActiveSubLinks = (path) => location.pathname.startsWith( path)
  
 
   
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary " dir='RTL'>
       <div className="container-fluid">
-        <Link className="navbar-brand" >   <span className="brand-en">Web Craft</span><br />
-                                                <span className="brand-ar">ويب كرافت</span></Link>
+        <Link className="navbar-brand" >   <span className="brand-en">Web Craft</span><br /><span className="brand-ar">ويب كرافت</span></Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -30,7 +30,7 @@ function Nav({favoritesCount, savesCount}) {
                 <Link className="nav-link" ><span> <FaUsers /> </span>من نحن</Link>
               </li>
               <li className="nav-item">
-                <Link to={'projects/'} className={`nav-link ${isActive('/projects/') ? "active" : ""}`}> <span> < FaBriefcase/></span> أعمالنا</Link>
+                <Link to={'projects/'} className={`nav-link ${isActive('/projects/') ? "active" : ""} ${isActiveSubLinks('/project/') ? "active" : ""} `}> <span> < FaBriefcase/></span> أعمالنا</Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link" > <span>  <FaEnvelope/> </span> تواصل معنا</Link>
@@ -42,17 +42,17 @@ function Nav({favoritesCount, savesCount}) {
                 <Link className="nav-link" > <span> <FaBlog/> </span>  المدونة</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link HeartIcon" > <span> <FaHeart className='heart-icon'/> <span > {favoritesCount} </span> </span>  </Link>
+                <Link to={'favourites/'} className="nav-link HeartIcon" > <span> <FaHeart className='heart-icon'/> <span > {favoritesCount} </span> </span>  </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link SaveIcon" > <span> <FaSave className='save-icon' /> {savesCount} </span>  </Link>
+                <Link to={'saves/'} className="nav-link SaveIcon" > <span> <FaSave className='save-icon' /> {savesCount} </span>  </Link>
               </li>
               
               
           </ul>
           <form className="d-flex" role="search">
             <input className="form-control me-2" type="search" placeholder="البحث" aria-label="Search"/>
-            <button className="btn btn-outline-success mx-1" type="submit">ابحث</button>
+            <button className="btn btn-primary mx-1" type="submit">ابحث</button>
           </form>
         </div>
       </div>

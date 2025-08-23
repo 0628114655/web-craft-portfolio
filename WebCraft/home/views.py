@@ -4,7 +4,7 @@ from rest_framework import generics
 from rest_framework import mixins
 from .models import *
 from rest_framework.response import Response
-import uuid
+from django.db.models import Count
 
 
 
@@ -37,23 +37,30 @@ class Images(generics.ListCreateAPIView):
     serializer_class = Image_serializer
     queryset = Image.objects.all()
     
-class FavoritesView(mixins.CreateModelMixin, mixins.ListModelMixin, mixins.DestroyModelMixin, generics.GenericAPIView ):
-    serializer_class = Favorits_serializer
-    queryset = Favorites.objects.all()
+class FavouritesView(mixins.CreateModelMixin, mixins.ListModelMixin, mixins.DestroyModelMixin, generics.GenericAPIView ):
+    serializer_class = Favourites_serializer
+    queryset = Favourites.objects.all()
     lookup_field = 'pk'
 
-
     def get(self, request,*args, **kwargs):
-        favorites_dict = {}
+        favourites_dict = {}
         user = request.COOKIES.get('visitor_id')
-        favorites = Favorites.objects.filter(visitor_id = user)
-        favorites_count = favorites.count()
-        serializer = Favorits_serializer(favorites, many = True)
-        favorites_dict = {'favorites' : serializer.data, 'count': favorites_count }
-        return Response({'favorites_list' : favorites_dict})
+        favourites = Favourites.objects.filter(visitor_id = user)
+        projectAllLikes = {}
+        projectLikes = Favourites.objects.values('project__id').annotate(likes = Count('id'))
+        for d in projectLikes:
+            id = d['project__id']
+            likes = d['likes']
+            projectAllLikes[id] = likes 
+       
+        fav_id = favourites.values_list('project_id' , flat=True)
+        projects = Project_serializer(Project.objects.filter(id__in = fav_id), many = True).data
+        serializer = Favourites_serializer(favourites, many = True)
+        favourites_dict = {'favourites' : serializer.data, 'projects' : projects, 'projectAllLikes': projectAllLikes}
+        return Response({'favourites_list' : favourites_dict})
     
     def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)  # من الميكسين
+        return self.create(request, *args, **kwargs) 
 
     def delete(self, request, *args, **kwargs):
         visitor_id = request.COOKIES.get('visitor_id')
@@ -77,9 +84,10 @@ class SavesView(mixins.CreateModelMixin, mixins.ListModelMixin, mixins.DestroyMo
         favorites_dict = {}
         user = request.COOKIES.get('visitor_id')
         saves = SavedProjects.objects.filter(visitor_id = user)
-        saves_count = saves.count()
+        save_id = saves.values_list('project_id' , flat=True)
+        projects = Project_serializer(Project.objects.filter(id__in = save_id), many = True).data
         serializer = Saves_serializer(saves, many = True)
-        favorites_dict = {'saves' : serializer.data, 'count': saves_count }
+        favorites_dict = {'saves' : serializer.data,  'projects' : projects }
         return Response({'saves_list' : favorites_dict})
     
     def post(self, request, *args, **kwargs):

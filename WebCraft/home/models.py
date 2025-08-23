@@ -3,6 +3,7 @@ from django.db import models
 # Create your models here.
 
 class Home(models.Model):
+    title = models.CharField(max_length = 100 , default = 'll')
     content = models.TextField()
     def __str__(self):
         return self.content[0:50]
@@ -42,10 +43,10 @@ class Image(models.Model):
     def __str__(self):
         return f' {self.id} |المشروع: {self.project.title}'  
     
-class Favorites(models.Model):
+class Favourites(models.Model):
     id = models.AutoField(primary_key=True)
     visitor_id = models.CharField(max_length = 150)
-    project = models.ForeignKey(Project, on_delete = models.CASCADE)
+    project = models.ForeignKey(Project, on_delete = models.CASCADE, related_name = 'projects')
 
     def __str__(self):
         return self.project.title
@@ -62,4 +63,15 @@ class SavedProjects(models.Model):
     
     class Meta:
         unique_together = ('project',  'visitor_id')
+
+class Pricing(models.Model):
+    id = models.AutoField(primary_key=True)
+    service = models.ManyToManyField(Service)
+    description = models.TextField(null = True, blank = True)
+    price = models.FloatField()
+
+    def __str__(self):
+        return f'service id is: {self.id}'
+    
+
 
