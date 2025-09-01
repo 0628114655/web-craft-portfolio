@@ -40,46 +40,52 @@
 }
 
 /* Body style start */
-  body {
+body {
     font-family: 'Tajawal';
     text-align: justify;
-    background-color: #F8F9FA ;
+    background-color: #f9fafb ;
     direction: rtl;
   }
-  @media( max-width: 575.98px){
+@media( max-width: 575.98px){
   .carousel-item img {
       max-height: 300px;    
     }
-    .carousel-control-icon{
+  .carousel-control-icon{
       font-size: 2rem;
     }
-    .icon{
+  .icon{
       font-size: 1.5rem !important;
     }
+  .btn:hover{
+      transform: scale(1.02) !important;
+      box-shadow: 0 0 3px  #DDDDDD;
+    } 
+  .home-card-btn:hover{
+      transform:translateX(-50%) scale(1.05) !important;
+    }
+}
 
-  
-  }
-  @media (max-width: 767px) {
-    .service-card-icon{
+@media (max-width: 767px) {
+  .service-card-icon{
       width: 15%;
       height: 70px;
     }
-    .service-card-content{
+  .service-card-content{
       line-height: 2rem;
     }
-    .service-card-title{
+  .service-card-title{
       height: 60px;
     }
-    .service-card-btn{
+  .service-card-btn{
       margin: 5px 2px 10px 2px;
     } 
-  }
-  @media( min-width: 575.99px){
-  
+}
+
+@media( min-width: 575.99px){
     .carousel-control-icon{
       font-size: 3rem;
     }
-  }
+}
 .btn{
   transition: 0.3s;
   margin: 2px;
@@ -138,7 +144,7 @@
     border-bottom: gray solid 5px; 
     transform: scale(1.01);
   }
-  .card-title{
+.card-title{
     width: fit-content;
     text-align: center;
     letter-spacing: 2px;
@@ -147,10 +153,10 @@
     font-weight: bold;
   }
   
-  .hidden{
+.hidden{
     display: none !important;
   }
-  @keyframes fadeIn{
+@keyframes fadeIn{
     from {
        opacity: 0;
        transform: translateY(-10px) ;
@@ -160,10 +166,20 @@
       transform: translateY(0px) ;
     }
   }
-
+@keyframes icon-animation{
+  from{
+      opacity: 0;
+      transform: translateY(-10px) ;
+    }
+  to{
+      opacity: 1;
+      transform: translateY(0px) ;
+    }
+}
+.text-align-justify {
+  text-align: justify;
+}
 /* Body style end */
-
-
 
 /* Footer style start */
   footer a {
@@ -192,8 +208,6 @@
     font-family: 'Tajawal';
     font-size: 1.0em;
   }
-
-
 .heart-icon{
   color: #e63946; /* أحمر جذاب */
   transition: all 0.2s  ease-in-out;
@@ -214,13 +228,122 @@
 
 /* Home style start */
 .home-service-icon{
-  font-size: 5rem;
   cursor: pointer;
-
+  margin: none !important;
 }
 .home-service-icon:hover{
   transform: scale(1.1);
   box-shadow:  0 0 3px #DDDDDD;
+}
+.overlay-text{
+  background: rgba(249, 250, 251, 0.8);
+  padding: 0.5rem;
+  border-radius: 8px;
+  min-height: 90vh;  
+}
+.intro{
+  font-size: 1.2rem;
+  color: #111;
+}
+.home-card-btn{
+  gap: 0.5rem;
+  position: absolute;
+  width:90% ;
+  bottom: 5px ;
+  left: 50%;                
+  transform: translateX(-50%);
+  transition: .3s;
+}
+.home-card-btn:hover{
+  transform:translateX(-50%) scale(1.05) ;
+}
+.whatsapp-icon{
+  gap: 0.5rem;
+  position: fixed;
+  bottom: 50px ;
+  right: 5px;
+  transition: .3s;
+}
+.scroll-bar{
+  gap: 0.5rem;
+  position: fixed;
+  bottom: 100px ;
+  right: 5px;
+  background: #333;
+  color: #fff;
+  border: none;
+  transition: .3s !important;
+}
+.home-square{
+  font-size: 1.2rem;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0;
+  transform-origin: center center;
+}
+.subTitle{
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: .3s;
+}
+.subTitle:hover{
+  transform: scale(1.05) translateY(-5px);  
+}
+
+.home-projects-card{
+  height: 350px;
+  padding: 20px 40px;
+}
+.home-project-img{
+  transition: .5s;
+
+}
+.home-projects-card:hover .home-project-img {
+  transform: scale(1.09) rotate(0.7deg);
+}
+.why-us{
+  background-color: #f9f9f9;
+}
+
+.subTitleCont .btn {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  
+}
+
+.subTitleCont .btn.visible {
+  opacity: 1;
+  transform: translateY(0) ;
+
+}
+.subTitleCont .btn:hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important; 
+  transform: scale(1.05);
+  box-shadow: 0 0 3px  #DDDDDD;
+}
+
+
+.subTitleCont{
+  min-height: 50vh;  
+}
+.bronze-gradient {
+  background: linear-gradient(135deg, #b87333, #cd7f32, #e6b17e);
+
+  /* تطبيق التدرج على النص */
+  -webkit-background-clip: text; /* لمتصفحات WebKit مثل Chrome وSafari */
+  background-clip: text;         /* للمتصفحات التي تدعم الخاصية القياسية */
+
+  /* جعل النص شفاف ليظهر التدرج */
+  -webkit-text-fill-color: transparent;
+
+  /* fallback للمتصفحات التي لا تدعم التدرج */
+  color: #cd7f32;
+
+}
+.icon-bronze {
+  color: #cd7f32;
 }
 /* Home style end */
 
@@ -228,7 +351,6 @@
   .service-card{ 
     height: 450px;
   }
-
   .service-card-icon{
     width: 15%;
     height: 50px;
@@ -249,6 +371,9 @@
   border-bottom: 1px solid #ccc;
   margin-bottom: 1rem;
   padding-bottom: 0.8rem;
+}
+.questions-button:active{
+  transform: none !important;
 }
 .questions-button{
   height: min-content;
@@ -293,10 +418,13 @@ padding: 0 10px;
 position: relative;
 margin: 0 px;
 margin-top: 100px;
+border: #000 solid 1px;
 opacity: 0;
+transition: background-color 0 ease ;
 }
 .project-action .btn:hover {
   transform: none;
+  background-color: #000;
 }
 
 .projects-card:hover .project-action {
@@ -308,37 +436,36 @@ background: rgba(255, 255, 255, 0.7);
   margin-top: 0;
 }
 
-.projects-card .project-action .btn:first-child {
+.project-action .btn:first-child {
   transition: .3s 0;
 }
-.projects-card .project-action .btn:first-child  .first-icon:hover {
+.project-action .btn:first-child:hover  .first-icon {
   transform: scale(1.1);
   color: #ff4d4d !important;
 }
 
-.projects-card .project-action .btn:nth-child(2)  {
+.project-action .btn:nth-child(2)  {
   transition: .3s 0.05s;
 }
-.projects-card:hover .project-action .btn:nth-child(2)  .second-icon:hover {
+.project-action .btn:nth-child(2):hover .second-icon {
   transform: scale(1.1);
   color: #38c172 !important;
 }
 
-.projects-card .project-action .btn:nth-child(3)  {
+.project-action .btn:nth-child(3)  {
   transition: .3s 0.10s;
 }
-.projects-card:hover .project-action .btn:nth-child(3)   .third-icon:hover{
+.project-action .btn:nth-child(3):hover .third-icon{
   transform: scale(1.1);
   color: #5a6f8c !important;
 }
 
-.projects-card .project-action .btn:nth-child(4)  {
+.project-action .btn:nth-child(4)  {
   transition: .3s 0.15s;
 }
-.projects-card .project-action .btn:nth-child(4)  .fourth-icon:hover {
+.project-action .btn:nth-child(4):hover .fourth-icon {
 transform: scale(1.1);
 color: #1DA1F2 !important;
-box-shadow: none;
 }     
 
 .projects-card:hover {
@@ -414,16 +541,6 @@ transform: scale(1.001);
     text-decoration: none; 
 }
 
-@keyframes icon-animation{
-  from{
-    opacity: 0;
-    margin-top: 100px;
-  }
-  to{
-    opacity: 1;
-    margin-top: 0px;
-  }
-}
 .share-card .btn:first-child{
   animation: icon-animation 0.3s  forwards;
   animation-delay: 0s;
@@ -438,7 +555,7 @@ transform: scale(1.001);
 }
 .share-card .btn:nth-child(4){
   animation: icon-animation 0.3s   forwards;
-  animation-delay: 0.10s;
+  animation-delay: 0.15s;
 }
 
 .share-cancel{
@@ -448,10 +565,6 @@ transform: scale(1.001);
 }
 .share-cancel:hover{
   transform:  scale( 1.1);
-}
-
-.project-views{
-  
 }
 /* Projects style ends */
 
@@ -720,3 +833,5 @@ transform: scale(1.001);
 }
 
 /* Saves style end */
+
+

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState , useEffect } from "react";
-import { BrowserRouter as  useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import * as icons from 'react-icons/fi';
 
 

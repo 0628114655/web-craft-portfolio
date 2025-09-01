@@ -1,10 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import  get_object_or_404
 from .serializer import *
 from rest_framework import generics
 from rest_framework import mixins
 from .models import *
 from rest_framework.response import Response
 from django.db.models import Count
+from django.db.models import F
 
 
 
@@ -29,6 +30,9 @@ class Projects(mixins.ListModelMixin, mixins.RetrieveModelMixin, generics.Generi
     def get(self, request, *args, **kwargs):
         pk = kwargs.get('pk')
         if pk != None:
+            if not self.request.user.is_staff and not self.request.user.is_superuser: 
+                Project.objects.filter(id = pk).update(views = F('views')+1)
+
             return self.retrieve(request, *args, **kwargs)
         else:
             return self.list(request, *args, **kwargs)
@@ -36,7 +40,15 @@ class Projects(mixins.ListModelMixin, mixins.RetrieveModelMixin, generics.Generi
 class Images(generics.ListCreateAPIView):
     serializer_class = Image_serializer
     queryset = Image.objects.all()
-    
+
+class BackgroundImages(generics.RetrieveAPIView):
+    serializer_class = BackgroundImages_serializer
+    queryset = BackgroundImage.objects.all()
+    def get(self, request, *args, **kwargs):
+        img = BackgroundImage.objects.order_by('?').first()
+        serializer = self.get_serializer(img)
+        return Response({'img' : serializer.data})
+
 class FavouritesView(mixins.CreateModelMixin, mixins.ListModelMixin, mixins.DestroyModelMixin, generics.GenericAPIView ):
     serializer_class = Favourites_serializer
     queryset = Favourites.objects.all()
@@ -54,6 +66,7 @@ class FavouritesView(mixins.CreateModelMixin, mixins.ListModelMixin, mixins.Dest
             projectAllLikes[id] = likes 
        
         fav_id = favourites.values_list('project_id' , flat=True)
+        
         projects = Project_serializer(Project.objects.filter(id__in = fav_id), many = True).data
         serializer = Favourites_serializer(favourites, many = True)
         favourites_dict = {'favourites' : serializer.data, 'projects' : projects, 'projectAllLikes': projectAllLikes}

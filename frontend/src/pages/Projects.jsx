@@ -45,16 +45,14 @@ function Projects({fetchFavouritesCount, favouritesList, fetchSavesCount,  saves
           
    
     const shareProject = (project) => {
-      // أولاً، نتأكد أن المتصفح يدعم Web Share API
       if (navigator.share) {
-        // إذا كان مدعوم، نستدعي الدالة share مع بيانات المشاركة
         navigator.share({
-          title: project.title,                // عنوان المشاركة (اسم المشروع)
-          text: 'شاهد هذا المشروع!',  // نص توضيحي مع الرابط
-          url: window.location.origin + `/projects/${project.id}` // رابط المشروع الكامل
+          title: project.title,                
+          text: 'شاهد هذا المشروع!',  
+          url: window.location.origin + `/projects/${project.id}` 
         })
-        .then(() => console.log('تمت المشاركة بنجاح'))  // إذا تمت المشاركة بنجاح
-        .catch((error) => console.log('خطأ في المشاركة:', error)); // إذا حدث خطأ
+        .then(() => console.log('تمت المشاركة بنجاح'))  
+        .catch((error) => console.log('خطأ في المشاركة:', error)); 
       }
        else {
         setShowAltShare(true);
@@ -115,8 +113,8 @@ function ProjectCard({ project }) {
           <p className="card-text">{project.gimpse}</p>
         </div>
         <div className='project-statistics-container' style={{position : 'absolute', bottom: '10px', left : '10px'}}>
-          <span className='project-likes m-2 text-secondary'> < icons.FaHeart className='project-likes-icon' /> {projectAllLikes[project.id]? projectAllLikes[project.id] : 0} </span>
-          <span className='project-views m-2 text-secondary'> < icons.FaEye  className='project-views-icon'/> {} </span>
+          <span className='project-likes m-1 text-secondary'> < icons.FaHeart className='project-likes-icon' /> {projectAllLikes[project.id]? projectAllLikes[project.id] : 0} </span>
+          <span className='project-views m-1 text-secondary'> < icons.FaEye  className='project-views-icon'/> {project.views} </span>
         </div>
       </div>
       

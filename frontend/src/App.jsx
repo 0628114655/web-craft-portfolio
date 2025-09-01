@@ -66,7 +66,7 @@ function App() {
         < Router>
         < Nav favoritesCount = {favouritesCount} savesCount = {savesCount} /> 
         <Routes>
-            <Route path='/' element={<Home />} /> 
+            <Route path='/' element={<Home projectAllLikes = {projectAllLikes} />} /> 
             <Route path='/services' element={<ServiceList />}/> 
             <Route path='/questions' element={<Questions />}/> 
             <Route path='/projects' element={<Projects projectAllLikes = {projectAllLikes} fetchFavouritesCount = {fetchFavouritesCount} favouritesList = {favouritesList} fetchSavesCount = {fetchSavesCount} savesList = {savesList} />}/> 

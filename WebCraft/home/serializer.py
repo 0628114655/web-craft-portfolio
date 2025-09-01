@@ -22,6 +22,11 @@ class Image_serializer(serializers.ModelSerializer):
         model = Image
         fields = '__all__'
 
+class BackgroundImages_serializer(serializers.ModelSerializer):
+   class Meta:
+        model = BackgroundImage
+        fields = '__all__'
+
 class Project_serializer(serializers.ModelSerializer):
    images = Image_serializer(read_only=True, many = True)
 

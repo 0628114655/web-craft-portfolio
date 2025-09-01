@@ -31,6 +31,7 @@ class Project(models.Model):
     type = models.CharField(max_length = 100 , default = 'خدمات', choices = choices)
     gimpse = models.CharField(max_length = 400)
     content = models.TextField()
+    views = models.IntegerField(default = 0)
 
     def __str__(self):
         return self.title
@@ -42,6 +43,13 @@ class Image(models.Model):
 
     def __str__(self):
         return f' {self.id} |المشروع: {self.project.title}'  
+    
+class BackgroundImage(models.Model):
+    id = models.AutoField(primary_key=True)
+    image = models.ImageField()
+
+    def __str__(self):
+        return f' {self.id}'  
     
 class Favourites(models.Model):
     id = models.AutoField(primary_key=True)
@@ -64,14 +72,35 @@ class SavedProjects(models.Model):
     class Meta:
         unique_together = ('project',  'visitor_id')
 
-class Pricing(models.Model):
-    id = models.AutoField(primary_key=True)
-    service = models.ManyToManyField(Service)
-    description = models.TextField(null = True, blank = True)
-    price = models.FloatField()
+class Plan(models.Model):
+    id = models.AutoField(primary_key= True)
+    title = models.CharField(max_length = 100)
 
     def __str__(self):
-        return f'service id is: {self.id}'
+        return self.title
+
+class PricingFeature(models.Model):
+    id = models.AutoField(primary_key = True)
+    service = models.ForeignKey(Service, on_delete = models.CASCADE)
+    plan = models.ManyToManyField(Plan)
+    features = models.JSONField(null = True, blank = True)  # قائمة من النقاط
+    icon = models.CharField(null = True, blank = True)
+
+
+    def __str__(self):
+        plan_titles = ", ".join([plan.title for plan in self.plan.all()])
+        return f'{self.service} - { plan_titles } - {self.features}' 
+
+
+
+class Pricing(models.Model):
+    id = models.AutoField(primary_key=True)
+    plan = models.ForeignKey(Plan, on_delete=models.CASCADE)
+    services = models.ForeignKey(Service, on_delete = models.CASCADE)
+    description = models.ManyToManyField(PricingFeature)
+    price = models.DecimalField(max_digits=8, decimal_places=2)
+    def __str__(self):
+        return f'service id is: {self.description}'
     
 
 
