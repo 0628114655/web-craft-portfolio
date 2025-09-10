@@ -87,7 +87,6 @@ class FavouritesView(mixins.CreateModelMixin, mixins.ListModelMixin, mixins.Dest
             context.update({"request": self.request})  # تمرير request للـ serializer
             return context
     
-
 class SavesView(mixins.CreateModelMixin, mixins.ListModelMixin, mixins.DestroyModelMixin, generics.GenericAPIView ):
     serializer_class = Saves_serializer
     queryset = SavedProjects.objects.all()
@@ -118,6 +117,13 @@ class SavesView(mixins.CreateModelMixin, mixins.ListModelMixin, mixins.DestroyMo
             context.update({"request": self.request})  # تمرير request للـ serializer
             return context
     
+class PricingFeatureView(generics.ListCreateAPIView):
+    serializer_class = PricingFeature_serializer
+    queryset = PricingFeature.objects.all()
+
+class PricingView(generics.ListCreateAPIView):
+    serializer_class = Pricing_serializer
+    queryset = Pricing.objects.all()
 
 
 

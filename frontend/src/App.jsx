@@ -12,6 +12,7 @@ import  Favourites  from "./pages/Favourites";
 import  Saves  from "./pages/Saves";
 import { BrowserRouter as Router, Route, Routes, } from 'react-router-dom'
 import { useEffect, useState } from "react";
+import Pricing from './pages/Pricing';
 
 
 
@@ -73,6 +74,7 @@ function App() {
             <Route path='/project/:id/' element={<Project/>}/> 
             <Route path='/favourites/' element={<Favourites fetchFavouritesCount = {fetchFavouritesCount}  favouritesList = {favouritesList}   />}/> 
             <Route path='/saves/' element={<Saves fetchSavesCount = {fetchSavesCount}   savesList = {savesList} />}/> 
+            <Route path='/pricing/' element={<Pricing />}/> 
         </Routes>
         < Footer /> 
         </Router>

@@ -32,48 +32,44 @@ function Favourites({fetchFavouritesCount, favouritesList, }) {
             }
     };
           
-   
-    
-
 function ProjectCard({ project }) {
   return (
-    <div className='col-6 col-md-4 col-lg-3 my-2'>
-  <div className='card favourites-card h-100 border-0 shadow-sm position-relative'>
-    
-    <Link to={`/project/${project.id}/`}><img className="card-img-top favourite-img"    src={project.images?.[0]?.image}   alt={project.title}   loading='lazy'  /> </Link>
+  <div className='col-6 col-md-4 col-lg-3 my-2'>
+    <div className='card favourites-card h-100 border-0 shadow-sm position-relative'>
+      
+      <Link to={`/project/${project.id}/`}><img className="card-img-top favourite-img"    src={project.images?.[0]?.image}   alt={project.title}   loading='lazy'  /> </Link>
 
-    <div className='icon-container position-absolute top-2 end-2'>
-      <icons.FaHeart 
-        className='icon favourite-heart-icon '  
-        onClick={() => { 
-          const favourite = favouritesList.find(fav => fav.project === project.id); 
-          if (favourite && favourite.id) { 
-            toggleItem('Favourites', favourite, true, fetchFavouritesCount); 
-            setRefresh(prev => !prev);
-          }
-        }} 
-        title={`إزالة المشروع من المفضلات`} 
-      />
+      <div className='icon-container position-absolute top-2 end-2'>
+        <icons.FaHeart 
+          className='icon favourite-heart-icon '  
+          onClick={() => { 
+            const favourite = favouritesList.find(fav => fav.project === project.id); 
+            if (favourite && favourite.id) { 
+              toggleItem('Favourites', favourite, true, fetchFavouritesCount); 
+              setRefresh(prev => !prev);
+            }
+          }} 
+          title={`إزالة المشروع من المفضلات`} 
+        />
+      </div>
+
+      <div className='card-body text-center'> 
+      <Link className='text-decoration-none  text-center' to={`/project/${project.id}/`}>
+        <h6 className="  favourites-project-title text-truncate">{project.title}</h6>
+      </Link>
+      <a 
+        href="https://wa.me/+2120628114655" 
+        className='btn btn-outline-success d-flex align-items-center justify-content-center gap-2 mt-2' 
+      >
+        <icons.FaWhatsapp size={20} /> احصل على موقعك الآن!
+      </a>
+      </div>
+
     </div>
-
-    <div className='card-body text-center'> 
-    <Link className='text-decoration-none  text-center' to={`/project/${project.id}/`}>
-      <h6 className="  favourites-project-title text-truncate">{project.title}</h6>
-    </Link>
-    <a 
-      href="https://wa.me/+2120628114655" 
-      className='btn btn-outline-success d-flex align-items-center justify-content-center gap-2 mt-2' 
-    >
-      <icons.FaWhatsapp size={20} /> احصل على موقعك الآن!
-    </a>
-    </div>
-
   </div>
-</div>
 
   );
   }
-
     useEffect(()=>{
         const getProject = async ()=>{
             try{

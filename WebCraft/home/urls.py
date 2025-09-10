@@ -10,9 +10,11 @@ urlpatterns = [
     path('Projects/<pk>/', views.Projects.as_view() ,name= 'Projects-detail'),
     path('Images/', views.Images.as_view() ,name= 'Images'),
     path('BackgroundImages/', views.BackgroundImages.as_view() ,name= 'BackgroundImages'),
-    path('Favourites/', views.FavouritesView.as_view(), name= 'Favourites'),
+    path('Favourites/', views.FavouritesView.as_view(), name ='Favourites'),
     path('Favourites/<pk>/', views.FavouritesView.as_view(), name= 'favourites-detail'),
     path('Saves/', views.SavesView.as_view(), name= 'Saves'),
-    path('Saves/<pk>/', views.SavesView.as_view(), name= 'Saves-detail'),
+    path('Saves/<pk>/', views.SavesView.as_view(), name ='Saves-detail'),
+    path('PricingFeature/', views.PricingFeatureView.as_view(), name ='PricingFeature'),
+    path('Pricing/', views.PricingView.as_view(), name ='Pricing'),
 
 ]+static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

@@ -6,8 +6,8 @@ class FavouritesAdmin(admin.ModelAdmin):
     list_display = ('id', 'visitor_id', 'project')  # عرض الحقول في قائمة السجلات
     search_fields = ('visitor_id', 'project__title')  # خيار 
 class PricingFeatureAdmin(admin.ModelAdmin):
-    list_display = ('id', 'service', 'features')  # عرض الحقول في قائمة السجلات
-    search_fields = ('id', 'service', 'features')  # خيار 
+    list_display = ('id', 'service', 'description')  # عرض الحقول في قائمة السجلات
+    search_fields = ('id', 'service', 'description')  # خيار 
 admin.site.register(Home)
 admin.site.register(Service)
 admin.site.register(Question)
