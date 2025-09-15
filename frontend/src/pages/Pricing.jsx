@@ -24,7 +24,7 @@ function Pricing() {
                             ))}
                     </ul>
                     { !showAll && prices.description.length > 10 && 
-                        <button onClick={()=>setShowAll(true)}>شاهد المزيد</button> }
+                        <button key={prices.id} onClick={()=>setShowAll(true)}>شاهد المزيد</button> }
                     <strong className='d-flex justify-content-center ' style={{}}> السعر المبدئي* : {prices.price} درهم ({prices.price / 10 } $)</strong>
                </div>
             </>
@@ -67,14 +67,9 @@ function Pricing() {
                 <Prices key={p.id} prices = {p} />
             ))}
                <small>* ملحوظة : الأسعار أعلاه مبدئية ويمكن أن تتغير حسب حجم المشروع ومتطلباته. </small>
-        
-    
         </div> 
   }
   </div>
-    
-    
-    
     )
 }
 
