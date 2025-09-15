@@ -12,15 +12,13 @@ function Pricing() {
         return(
             <>
                 <div className="col col-md-4 col-12 my-3 border p-2 shadow position-relative" style={{backgroundColor: `${prices.plan.color}`, borderRadius: '10px'}}>
-                    <h4 className='d-flex justify-content-center  ' > الخطة: {prices.plan.title} </h4>
-                    
+                    <h4 className='d-flex justify-content-center  ' > الخطة: {prices.plan.title} </h4>           
                     <ul>
                         {prices.description.slice(0, showAll?prices.description.length:10).map(feature => (
                             <li key={feature.id}>
                                 {feature.icon && <span>{feature.icon} </span>}
                                 {feature.description}
                             </li>
-                            
                             ))}
                     </ul>
                     { !showAll && prices.description.length > 10 && 
@@ -29,10 +27,7 @@ function Pricing() {
                </div>
             </>
         )
-
     }
-
-    
     useEffect(() =>{
         const getPrices =  async () => {
             try{
