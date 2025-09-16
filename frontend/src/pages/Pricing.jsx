@@ -6,23 +6,33 @@ function Pricing() {
     const [pricing, setPricing ] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState()
-    const [showAll, setShowAll] = useState(false)
-
+    
     function Prices  ({prices}) {
+        const [showAll, setShowAll] = useState(false)
         return(
             <>
                 <div className="col col-md-4 col-12 my-3 border p-2 shadow position-relative" style={{backgroundColor: `${prices.plan.color}`, borderRadius: '10px'}}>
                     <h4 className='d-flex justify-content-center  ' > الخطة: {prices.plan.title} </h4>           
                     <ul>
-                        {prices.description.slice(0, showAll?prices.description.length:10).map(feature => (
+                        {prices.description.map(feature => (
                             <li key={feature.id}>
                                 {feature.icon && <span>{feature.icon} </span>}
                                 {feature.description}
                             </li>
-                            ))}
+                            )).slice(0, showAll?prices.description.length:10)}
                     </ul>
-                    { !showAll && prices.description.length > 10 && 
-                        <button key={prices.id} onClick={()=>setShowAll(true)}>شاهد المزيد</button> }
+                    <div className="text-center mt-2">
+
+                        { !showAll && prices.description.length > 10 &&
+                            <button className='btn btn-outline-dark mt-2 mb-1' style={{}}  key={prices.id} onClick={()=>setShowAll(true)}>شاهد المزيد ...</button>
+                            
+                        }
+                        {
+                            showAll &&
+                            <button className='btn btn-outline-secondary mt-2 mb-1' key={prices.id} onClick={()=>setShowAll(false)}>عرض أقل  </button>
+                        }
+                    </div>
+
                     <strong className='d-flex justify-content-center ' style={{}}> السعر المبدئي* : {prices.price} درهم ({prices.price / 10 } $)</strong>
                </div>
             </>
